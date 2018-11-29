@@ -1,0 +1,105 @@
+<form [formGroup]="patientsForm" (ngSubmit)="onSubmit()">
+
+    <div class="ui-inputgroup">
+        <label for="fname">First Name</label>
+        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <input id="fname" type="text" id="fname" pInputText formControlName="fname" required  > 
+        
+        <div *ngIf="patientsForm.controls['fname'].errors && !patientsForm.controls['fname'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['fname'].errors.required" class="alert alert-danger">fname is required </div>
+                <div class="alert alert-danger" [hidden]="!patientsForm.controls['fname'].errors.patternInvalid">fname is invalid.</div>
+        </div>
+        <div class="alert alert-danger" *ngIf="patientsForm.controls['fname'].errors?.minlength">
+                Name must be at least 5 characters long.
+        </div> 
+    </div>
+
+    <div class="ui-inputgroup">
+            <label for="mname">Middle Name</label>
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <input type="text" id="mname" pInputText formControlName="mname"> 
+        
+        <div *ngIf="patientsForm.controls['mname'].errors && !patientsForm.controls['mname'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['mname'].errors.required" class="alert alert-danger">mname is required.</div>
+                <div class="alert alert-danger" [hidden]="!patientsForm.controls['mname'].errors.patternInvalid">mname is invalid.</div>
+        </div>
+    </div> 
+
+
+    <div class="ui-inputgroup">
+        <label for="lname">Last Name</label>
+        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+        <input type="text" id="lname" pInputText formControlName="lname">   
+        <div *ngIf="patientsForm.controls['lname'].errors && !patientsForm.controls['lname'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['lname'].errors.required" class="alert alert-danger">lname is required.</div>
+                <div class="alert alert-danger" [hidden]="!patientsForm.controls['lname'].errors.patternInvalid">lname is invalid.</div>
+        </div>   
+        <div class="alert alert-danger" *ngIf="patientsForm.controls['lname'].errors?.minlength">
+              last Name must be at least 5 characters long.
+        </div>    
+    </div>
+
+    <div class="ui-inputgroup">
+        <label for="email">Email</label>
+        <span class="ui-inputgroup-addon">@</span>
+        <input type="text" id="email" pInputText formControlName="email">  
+
+        <div *ngIf="patientsForm.controls['email'].errors && !patientsForm.controls['email'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['email'].errors.required" class="alert alert-danger">email is required.</div>
+        
+                <div class="alert alert-danger" *ngIf="patientsForm.controls['email'].errors.email">Email must be a valid email address</div>
+        </div>      
+       
+    </div> 
+
+
+    <div class="ui-inputgroup">
+        <label for="DOB">Birth Date</label>
+        <p-calendar formControlName="DOB" [showIcon]="true" id="DOB"></p-calendar>
+    </div> 
+
+    <div class="ui-inputgroup">
+            <label for="gender"> Gender </label>
+            <p-radioButton name="gender" value="1" formControlName="gender" label="male"></p-radioButton>
+            <p-radioButton name="gender" value="2" formControlName="gender" label="female"></p-radioButton>    
+
+            <div *ngIf="patientsForm.controls['gender'].errors && !patientsForm.controls['gender'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['gender'].errors.required" class="alert alert-danger">gender is required.</div>
+                <div class="alert alert-danger" [hidden]="!patientsForm.controls['gender'].errors.patternInvalid">gender is invalid.</div>
+                </div>      
+
+    </div> 
+
+
+    <div class="ui-inputgroup">
+            <label for="lastCheck">Last Check</label>
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <p-calendar formControlName="lastCheck" [showIcon]="true" id="lastCheck"></p-calendar>
+
+            <div *ngIf="patientsForm.controls['lastCheck'].errors && !patientsForm.controls['lastCheck'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['lastCheck'].errors.required" class="alert alert-danger">lastCheck is required.</div>
+                <div class="alert alert-danger" [hidden]="!patientsForm.controls['lastCheck'].errors.patternInvalid">lastCheck is invalid.</div>
+        </div>      
+
+
+    </div> 
+
+
+    <div class="ui-inputgroup">
+            <label for="status">Status</label>
+            <p-dropdown [options]="statusItems" (onChange)="onChange()" formControlName="status" optionLabel="name"></p-dropdown>
+
+            <div *ngIf="patientsForm.controls['status'].errors && !patientsForm.controls['status'].pristine" class="error-msg">
+                <div [hidden]="!patientsForm.controls['status'].errors.required" class="alert alert-danger">status is required.</div>
+                <div class="alert alert-danger" [hidden]="!patientsForm.controls['status'].errors.patternInvalid">status is invalid.</div>
+        </div>      
+
+        </div> 
+
+    <div class="ui-inputgroup">
+            <label for="Active">Active</label>
+            <p-inputSwitch formControlName="Active"></p-inputSwitch>
+    </div>
+    
+        <button pButton type="submit" label="Save"  class="ui-button-rounded ui-button-success"></button>
+</form>
